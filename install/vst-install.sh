@@ -1,7 +1,8 @@
 #!/bin/bash
-# Vesta installation wrapper
-# http://vestacp.com
+# atwabcp installation wrapper
+# https://atwab.dev/atwabcp
 
+# Based on Vesta http://vestacp.com
 #
 # Currently Supported Operating Systems:
 #
@@ -20,7 +21,7 @@ fi
 
 # Check admin user account
 if [ ! -z "$(grep ^admin: /etc/passwd)" ] && [ -z "$1" ]; then
-    echo "Error: user admin exists"
+    echo "Error: user admin already exists"
     echo
     echo 'Please remove admin user before proceeding.'
     echo 'If you want to do it automatically run installer with -f option:'
@@ -30,7 +31,7 @@ fi
 
 # Check admin group
 if [ ! -z "$(grep ^admin: /etc/group)" ] && [ -z "$1" ]; then
-    echo "Error: group admin exists"
+    echo "Error: group already admin exists"
     echo
     echo 'Please remove admin group before proceeding.'
     echo 'If you want to do it automatically run installer with -f option:'
@@ -48,7 +49,7 @@ esac
 
 # Check wget
 if [ -e '/usr/bin/wget' ]; then
-    wget http://vestacp.com/pub/vst-install-$type.sh -O vst-install-$type.sh
+    wget https://atwab.dev/atwabcp/source/v1.0a/install/vst-install-$type.sh -O vst-install-$type.sh
     if [ "$?" -eq '0' ]; then
         bash vst-install-$type.sh $*
         exit
@@ -60,7 +61,7 @@ fi
 
 # Check curl
 if [ -e '/usr/bin/curl' ]; then
-    curl -O http://vestacp.com/pub/vst-install-$type.sh
+    curl -O https://atwab.dev/atwabcp/source/v1.0a/install/vst-install-$type.sh
     if [ "$?" -eq '0' ]; then
         bash vst-install-$type.sh $*
         exit
